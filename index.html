@@ -5,24 +5,23 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Employee Tracker</title>
+  <title>Train Scheduler</title>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!-- Firebase Reference -->
-  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
 
   <!-- Moment.js Reference -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
 
   <style>
-    #employee-table th,
+    #train-table th,
     td {
       display: inline-block;
-      width: 16.575%;
+      width: 19.95%;
     }
   </style>
 </head>
@@ -34,27 +33,27 @@
 
     <!-- Jumbotron -->
     <div class="jumbotron" style="background-color: black; color: white">
-      <h1 class="text-center">Employee Data Management</h1>
-      <h3 class="text-center">A Comprehensive Directory of Employee Billable Hours</h3>
+      <h1 class="text-center">Casey Jones' Family Rails</h1>
+      <h3 class="text-center">Schedule of Northbound Trains</h3>
     </div>
 
     <div class="row">
 
       <div class="col-md-12">
 
-        <!-- Current Employees-->
+        <!-- Current Schedule-->
         <div class="card mb-4">
-          <div class="card-header">Current Employees</div>
+          <div class="card-header">Current Schedule <span class="snarkyAsides">(mind-state subject to change)</span>
+          </div>
           <div class="card-body">
-            <table class="table table-sm table-hover" id='employee-table'>
+            <table class="table table-sm table-hover" id='train-table'>
               <thead>
                 <tr>
-                  <th scope="col">Employee Name</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">Months Worked</th>
-                  <th scope="col">Monthly Rate ($)</th>
-                  <th scope="col">Total Billed ($)</th>
+                  <th scope="col">Train Name</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Next Arrival</th>
+                  <th scope="col">Minutes Away</th>
                 </tr>
               </thead>
               <tbody>
@@ -69,28 +68,28 @@
       <div class="col-md-12">
         <!-- Add Employee  -->
         <div class="card mb-4">
-          <div class="card-header">Add Employee</div>
+          <div class="card-header">New Train Input</div>
           <div class="card-body">
 
             <!-- Entry Form -->
             <form>
               <div class="form-group">
-                <label for="employee-name-input">Employee Name</label>
-                <input class="form-control" id="employee-name-input" placeholder="Jane Doe" type="text">
+                <label for="train-name-input">Train Name</label>
+                <input class="form-control" id="train-name-input" placeholder="Festival Express" type="text">
               </div>
               <div class="form-group">
-                <label for="role-input">Role</label>
-                <input class="form-control" id="role-input" placeholder="CEO" type="text">
+                <label for="destCity-input">Destination</label>
+                <input class="form-control" id="destCity-input" placeholder="Calgary" type="text">
               </div>
               <div class="form-group">
-                <label for="start-input">Start Date (MM/DD/YYYY)</label>
-                <input class="form-control" id="start-input" placeholder="01/08/1989" type="text">
+                <label for="firstTime-input">First Train Time (HH:mm - Military Time)</label>
+                <input class="form-control" id="firstTime-input" placeholder="13:00" type="text">
               </div>
               <div class="form-group">
-                <label for="rate-input">Monthly Rate</label>
-                <input class="form-control" id="rate-input" placeholder="200000" type="text">
+                <label for="freq-input">Train Frequency (min)</label>
+                <input class="form-control" id="freq-input" placeholder="43200" type="text">
               </div>
-              <button class="btn btn-primary float-right" id="add-employee-btn">Submit</button>
+              <button class="btn btn-primary float-right" id="add-train-btn">Submit</button>
             </form>
 
           </div>
@@ -101,7 +100,28 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="timesheetLogic.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script> -->
+
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+  <script src="assets/javascript/app.js"></script>
 
 </body>
 
