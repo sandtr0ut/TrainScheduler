@@ -8,97 +8,118 @@
   <title>Train Scheduler</title>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
 
+  <link rel="stylesheet" href="assets/css/style.css">
 
-  <style>
+
+  <!-- <style>
     #trainTable th,
     td {
       display: inline-block;
       width: 19.95%;
     }
-  </style>
+  </style> -->
 </head>
 
 <body>
-  
-  <div class="container">
-
-    <!-- Jumbotron -->
-    <div class="jumbotron" style="background-color: black; color: white">
-      <h1 class="text-center">Casey Jones' Family Rails</h1>
-      <h3 class="text-center">Get On and Get Down!</h3>
+  <div class="container-fluid d-flex flex-column flex-lg-row justify-content-center">
+    <div class="media order-2 order-lg-1">
+      <img class="align-self-center" src="assets/images/festExpConPstr2" alt="">
     </div>
+    
+      <div class="container pt-1 order-1 order-lg-2" id="appBackground">
+        <!-- style="background-image: url('assets/images/festExpPstr_medres.jpg')" -->
+        <!-- Jumbotron -->
+        <div class="jumbotron mt-2">
+          <h1 class="text-left align-text-top">Casey Jones'</h1>
+          <h1 class="text-left align-text-top">Family Rails</h1>
+          <h3 class="text-right">Get On and Get Down!</h3>
+        </div>
 
-    <div class="row">
-      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
 
-        <!-- Current Schedule-->
-        <div class="card mb-4">
-          <div class="card-header">Schedule <span class="snarkyAsides"> ( relax friends ...time is relative! )</span>
+            <!-- Current Schedule-->
+            <div class="card mb-4 bg-transparent">
+              <div class="card-header font-weight-bold">Schedule of Trains <span class="snarkyAsides"> ( relax friends
+                  ...time is relative! )</span>
+              </div>
+              <div class="card-body">
+                <table class="table table-responsive-xl table-hover" id='trainTable'>
+                  <thead>
+                    <tr>
+                      <th>
+                        <h5>Train Name</h4>
+                      </th>
+                      <th>
+                        <h5 class="text-center">Destination</h5>
+                      </th>
+                      <th>
+                        <h5 class="text-center">Frequency</h5>
+                      </th>
+                      <th>
+                        <h5 class="text-center">Next Arrival</h5>
+                      </th>
+                      <th>
+                        <h5 class="text-center">Minutes Away</h5>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- jQuery will populate -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <table class="table table-sm table-hover" id='trainTable'>
-              <thead>
-                <tr>
-                  <th>Train Name</th>
-                  <th>Destination</th>
-                  <th>Frequency</th>
-                  <th>Next Arrival</th>
-                  <th>Minutes Away</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- jQuery will populate -->
-              </tbody>
-            </table>
+        </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Add Train  -->
+          <div class="card mb-4 bg-transparent">
+            <div class="card-header font-weight-bold">Add to Schedule</div>
+            <div class="card-body">
+
+              <!-- Input Form -->
+              <form>
+                <div class="form-group">
+                  <label for="">Train Name</label>
+                  <input class="form-control" id="nameAdaTrain" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="">Destination</label>
+                  <input class="form-control" id="destInput" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="">First Train Time (HH:mm - Military Time)</label>
+                  <input class="form-control" id="firstTrip" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="">Train Frequency (min)</label>
+                  <input class="form-control" id="freqInput" type="text">
+                </div>
+                <button class="btn btn-primary float-right" id="addTrainBtn">Submit</button>
+              </form>
+
+            </div>
           </div>
         </div>
       </div>
+
     </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Add Train  -->
-        <div class="card mb-4">
-          <div class="card-header">Add to Schedule</div>
-          <div class="card-body">
-
-            <!-- Input Form -->
-            <form>
-              <div class="form-group">
-                <label for="">Train Name</label>
-                <input class="form-control" id="nameAdaTrain" type="text">
-              </div>
-              <div class="form-group">
-                <label for="">Destination</label>
-                <input class="form-control" id="destInput" type="text">
-              </div>
-              <div class="form-group">
-                <label for="">First Train Time (HH:mm - Military Time)</label>
-                <input class="form-control" id="firstTrip" type="text">
-              </div>
-              <div class="form-group">
-                <label for="">Train Frequency (min)</label>
-                <input class="form-control" id="freqInput" type="text">
-              </div>
-              <button class="btn btn-primary float-right" id="addTrainBtn">Submit</button>
-            </form>
-
-          </div>
-        </div>
+    <div class="media order-3">
+        <img class="align-self-center" src="assets/images/festExpSideShot1" alt="">
       </div>
-    </div>
-
   </div>
-
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-  crossorigin="anonymous">
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">

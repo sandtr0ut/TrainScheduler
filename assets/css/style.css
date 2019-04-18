@@ -1,0 +1,31 @@
+#appBackground {
+  background-image: url("../images/festExpPstr_medres.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.jumbotron {
+  background-color: black; color: white;
+  background-image: url("../images/SYF_Header.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* @media only screen and (min-device-width: 1280px) { */
+/* body {
+  background-image: url("../images/festExpConPstr2"), url("../images/festExpSideShot1");
+  background-position: left, right;
+  background-repeat: no-repeat, no-repeat;
+  border: 10px solid transparent;
+  background-origin: border-box;
+} */
+/* } */
+
+
+/* #trainTable 
+th,
+td {
+  display: inline-block;
+  width: 19.95%;
+} */
+

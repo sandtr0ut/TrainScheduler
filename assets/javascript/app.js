@@ -96,19 +96,19 @@ trainData.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
   //  Create, populate, and append new row with single line of jQuery
 
-  $("#trainTable > tBody").append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + arrival + "</td><td>" + minutes + "</td></tr>");
+  // $("#trainTable > tBody").append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + arrival + "</td><td>" + minutes + "</td></tr>");
 
 
   // Create the new row
   
-  // $("#trainTable > tbody").append(
-  // $("<tr>").append(
-  //   $("<td>").text(name),
-  //   $("<td>").text(destination),
-  //   $("<td>").text(frequency),
-  //   $("<td>").text(arrival),
-  //   $("<td>").text(minutes),
-  // )
-  // );
+  $("#trainTable > tbody").append(
+  $("<tr>").append(
+    $("<td class='font-weight-bold'>").text(name),
+    $("<td class='text-center font-weight-bold'>").text(destination),
+    $("<td class='text-center font-weight-bold'>").text(frequency),
+    $("<td class='text-center font-weight-bold'>").text(arrival),
+    $("<td class='text-center font-weight-bold'>").text(minutes),
+  )
+  );
 
 });
